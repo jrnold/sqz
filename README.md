@@ -1,6 +1,7 @@
 # quattro-sqz
 
 [![CI](https://github.com/jrnold/sqz/actions/workflows/ci.yml/badge.svg)](https://github.com/jrnold/sqz/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/jrnold/sqz/branch/main/graph/badge.svg)](https://app.codecov.io/gh/jrnold/sqz)
 [![Crates.io](https://img.shields.io/crates/v/quattro-sqz.svg)](https://crates.io/crates/quattro-sqz)
 [![docs.rs](https://img.shields.io/docsrs/quattro-sqz)](https://docs.rs/quattro-sqz)
 [![License: MIT OR Apache-2.0](https://img.shields.io/crates/l/quattro-sqz.svg)](#legal)
