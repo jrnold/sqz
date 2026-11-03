@@ -1,0 +1,50 @@
+[package]
+name = "quattro-sqz"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.88"
+description = "Reader for SQZ! compressed Quattro Pro spreadsheets (.WQ!)"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/jrnold/sqz"
+readme = "README.md"
+keywords = ["quattro-pro", "spreadsheet", "sqz", "decompression", "file-format"]
+categories = ["parser-implementations", "compression", "command-line-utilities"]
+publish = true
+# The test fixtures stay out of the published crate.
+include = ["/src/**", "/Cargo.toml", "/README.md", "/FORMAT.md", "/CHANGELOG.md", "/LICENSE-*"]
+
+[[bin]]
+name = "sqz"
+path = "src/main.rs"
+
+[dependencies]
+
+[dev-dependencies]
+proptest = "1"
+
+[lints.rust]
+unsafe_code = "forbid"
+missing_docs = "warn"
+unreachable_pub = "warn"
+unused_qualifications = "warn"
+
+[lints.clippy]
+all = { level = "deny", priority = -1 }
+pedantic = { level = "warn", priority = -1 }
+# This is a bit-level format. Narrowing casts happen after masking to the field's width, and the
+# signed cast reinterprets a stored 16-bit integer.
+cast_possible_truncation = "allow"
+cast_possible_wrap = "allow"
+# Parsers read better with one match per record than split across helpers.
+too_many_lines = "allow"
+dbg_macro = "deny"
+todo = "deny"
+unimplemented = "deny"
+# Library code reports bad input as an Error, and must not panic on it.
+unwrap_used = "warn"
+expect_used = "warn"
+panic = "warn"
+indexing_slicing = "allow" # Bounds are checked by the surrounding code; the property tests cover it.
+
+[profile.release]
+lto = "thin"
