@@ -58,6 +58,41 @@ Quattro Pro's output, apart from small differences in stored results that Quattr
 - `.WK!` and `.WK$` files (Lotus 1-2-3) use a different driver and aren't supported.
 - A `.WQ1` from this tool opens in Quattro Pro 4.0 and LibreOffice, but isn't byte-identical to Quattro's own.
 
+## What `.WQ!` was, and when it was used
+
+`.WQ!` is the compressed form of a Quattro Pro for DOS spreadsheet. Quattro Pro's normal format was `.WQ1`, and saving
+under a `.WQ!` name ran the sheet through SQZ!, a compressor from Synex Systems that was built into the program. The
+format belongs to the period from about 1989 to the mid-1990s.
+
+SQZ! worked only on spreadsheets. It rewrites each record with field-specific codes, a fixed character code, and
+references to earlier cells, as [`FORMAT.md`](FORMAT.md) describes. Borland advertised savings of up to 95%. The 25
+sample files here are 56% smaller than the `.WQ1` files Quattro Pro 4.0 saves from them (1.10 MB against 2.47 MB).
+Individual files range from 39% to 65%.
+
+| When | What happened | Source |
+|---|---|---|
+| 1986 | SQZ! goes on sale for Lotus 1-2-3, as an add-in and a memory-resident utility, through Symantec's Turner Hall Publishing | [Wikipedia][synex] |
+| 1987 to 1988 | SQZ! Plus replaces SQZ! 1.5. Sources differ on the year: the Computer History Museum dates a package to 1987, and Wikipedia gives 1988 | [Computer History Museum][chm], [Wikipedia][synex] |
+| 1987 to 1988 | Borland's first spreadsheet, Quattro, ships with a built-in version of SQZ! Plus that compresses and expands files as they're saved and retrieved | [BYTE, May 1988][byte] (Borland advertisement) |
+| Late 1989 | Quattro Pro 1.0 ships, with `.WQ1` as its format | [Wikipedia][qpro] |
+| 1991 to 1992 | Quattro Pro for DOS reaches 2.0, 3.0, and 4.0. The SQZ! reader in 4.0 still carries a 1987-1988 Synex copyright, as "Release 2.00" | [Wikipedia][qpro], `FRWQ!.TRN` |
+| 1993 to 1994 | The US Army Concepts Analysis Agency distributes the sample files here on diskette, described as readable by Quattro Pro 3.0 | [Diskette `README`](tests/fixtures/original/README) |
+| Mid-1990s | SQZ! is discontinued, as larger disks and compression built into DOS and Windows remove the need for it | [Wikipedia][synex] |
+
+`.WQ!` was one of several SQZ! file types. [One account of Quattro Pro 4.0](https://tparchie.wordpress.com/2014/10/03/quattro-pro-by-borland/)
+lists `.WK!` for Lotus `.WK1` files, `.WK$` for `.WKS` files, and `.WKZ` for older Quattro files. A separate Mac SQZ!
+compressed Excel files. Within `.WQ!`, the `Z15` and `Z20` magic numbers appear to match SQZ! 1.5 and the Release 2.00
+reader. All 25 sample files are `Z20`, the only version Quattro Pro 4.0 writes.
+
+The record is thin, so treat these dates as approximate. Wikipedia's account of SQZ! is partly uncited, including its
+end date. I inferred the start of `.WQ!` from Quattro Pro's `.WQ1` format, and I haven't confirmed that Quattro Pro 1.0
+wrote it, or which later Windows versions read it.
+
+[byte]: https://vintageapple.org/byte/pdf/198805_Byte_Magazine_Vol_13-05_CPU_Architectures_-_Word_Processors.pdf
+[chm]: https://www.computerhistory.org/collections/catalog/102778265
+[qpro]: https://en.wikipedia.org/wiki/Quattro_Pro
+[synex]: https://en.wikipedia.org/wiki/Synex_Systems_Corporation
+
 ## Development
 
 ```bash
