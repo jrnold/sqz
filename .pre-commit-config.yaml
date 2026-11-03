@@ -1,0 +1,23 @@
+# Rust checks. Tests run on pre-push because the property tests take a few seconds.
+repos:
+  - repo: local
+    hooks:
+      - id: cargo-fmt
+        name: cargo fmt
+        entry: cargo fmt --all --check
+        language: system
+        types: [rust]
+        pass_filenames: false
+      - id: cargo-clippy
+        name: cargo clippy
+        entry: cargo clippy --all-targets --all-features -- -D warnings
+        language: system
+        types: [rust]
+        pass_filenames: false
+      - id: cargo-test
+        name: cargo test
+        entry: cargo test --all-targets
+        language: system
+        types: [rust]
+        pass_filenames: false
+        stages: [pre-push]

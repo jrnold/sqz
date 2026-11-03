@@ -1,0 +1,3 @@
+# Test fixtures are exact binary files.
+tests/fixtures/** binary
+tests/fixtures/README.md text
